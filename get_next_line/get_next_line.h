@@ -1,32 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jtriscar <jtriscar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/21 18:36:00 by jtriscar          #+#    #+#             */
-/*   Updated: 2023/11/04 20:10:14 by jtriscar         ###   ########.fr       */
+/*   Created: 2023/11/02 23:37:54 by jtriscar          #+#    #+#             */
+/*   Updated: 2023/11/04 21:35:00 by jtriscar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdlib.h>
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
+# include <unistd.h>
+# include <stdlib.h>
 
-char	*ft_strjoin(char const *s1, char const *s2)
-{
-	int		len1;
-	int		len2;
-	char	*new_s;
+char	*get_next_line(int fd);
 
-	len1 = ft_strlen(s1);
-	len2 = ft_strlen(s2);
-	new_s = (char *)ft_calloc(len1 + len2 + 1, sizeof(char));
-	if (new_s == NULL)
-	{
-		return (NULL);
-	}
-	ft_strlcpy(new_s, (char *)s1, len1 + 1);
-	ft_strlcpy(new_s + len1, (char *)s2, len2 + 1);
-	return (new_s);
-}
+int		ft_strlen(const char *str);
+char	*ft_strdup(const char *s1);
+char	*ft_strjoin(const char *s1, const char *s2, unsigned long len);
+char	*ft_substr(char const *s, unsigned int start, unsigned long len);
+void	*ft_memcpy(void *dest, const void *src, unsigned long n);
+
+#endif
