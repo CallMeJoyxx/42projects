@@ -39,7 +39,7 @@ int	count_hex_length(unsigned long num)
 	return (count);
 }
 
-static void	convert_to_down(unsigned long num, char *hexstring)
+static int	convert_to_down(unsigned long num, char *hexstring)
 {
 	const char	*hexchars;
 	int			len;
@@ -48,6 +48,10 @@ static void	convert_to_down(unsigned long num, char *hexstring)
 	len = count_hex_length(num);
 	hexchars = "0123456789abcdef";
 	i = len - 1;
+	if (i < 0)
+	{
+		return (0);
+	}
 	while (i >= 0)
 	{
 		hexstring[i] = hexchars[num % 16];
@@ -55,6 +59,7 @@ static void	convert_to_down(unsigned long num, char *hexstring)
 		i--;
 	}
 	hexstring[len] = '\0';
+	return (1);
 }
 
 int	ft_print_ptr(unsigned long pointer)
@@ -62,17 +67,26 @@ int	ft_print_ptr(unsigned long pointer)
 	char	*hexstring;
 	int		count;
 
-	hexstring = (char *)malloc(count_hex_length(pointer) + 3);
+	if (pointer == 0)
+		return (write(1, "0x0", 3));
 	count = 0;
+	hexstring = (char *)malloc(count_hex_length(pointer) + 3);
 	if (hexstring == NULL)
+		return (-1);
+	count += write(1, "0x", 2);
+	if (count < 0)
 	{
+		free(hexstring);
 		return (-1);
 	}
-	count += write(1, "0x", 2);
-	convert_to_down(pointer, hexstring);
+	if (convert_to_down(pointer, hexstring) == 0)
+	{
+		free(hexstring);
+		return (-1);
+	}
 	count += write(1, hexstring, ft_strlen(hexstring));
 	free(hexstring);
-	if (pointer == 0)
-		count += ft_print_char('0');
+	if (count < 0)
+		return (-1);
 	return (count);
 }
