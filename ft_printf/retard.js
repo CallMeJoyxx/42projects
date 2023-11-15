@@ -1,0 +1,1 @@
+retard piece of shit
