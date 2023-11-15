@@ -1,1 +1,3 @@
-retard piece of shit
+{
+k
+)
