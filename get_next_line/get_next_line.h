@@ -6,7 +6,7 @@
 /*   By: jtriscar <jtriscar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 23:37:54 by jtriscar          #+#    #+#             */
-/*   Updated: 2023/11/04 21:35:00 by jtriscar         ###   ########.fr       */
+/*   Updated: 2023/11/17 21:07:39 by jtriscar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,16 @@
 # include <unistd.h>
 # include <stdlib.h>
 
-char	*get_next_line(int fd);
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE
+# endif
 
-int		ft_strlen(const char *str);
-char	*ft_strdup(const char *s1);
-char	*ft_strjoin(const char *s1, const char *s2, unsigned long len);
-char	*ft_substr(char const *s, unsigned int start, unsigned long len);
-void	*ft_memcpy(void *dest, const void *src, unsigned long n);
+char			*get_next_line(int fd);
+
+int				ft_strlen(const char *str);
+char			*ft_strjoin(char *s1, char *s2);
+char			*ft_strchr(char *s, int c);
+void			*ft_calloc(unsigned long count, unsigned long size);
+unsigned int	ft_strlcpy(char *dest, char *src, unsigned long size);
 
 #endif
