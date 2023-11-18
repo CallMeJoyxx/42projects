@@ -6,7 +6,7 @@
 /*   By: jtriscar <jtriscar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 23:37:54 by jtriscar          #+#    #+#             */
-/*   Updated: 2023/11/17 22:13:08 by jtriscar         ###   ########.fr       */
+/*   Updated: 2023/11/18 22:13:41 by jtriscar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdlib.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
+#  define BUFFER_SIZE 420
 # endif
 
 char			*get_next_line(int fd);
