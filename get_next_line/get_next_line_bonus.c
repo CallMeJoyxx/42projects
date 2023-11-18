@@ -6,7 +6,7 @@
 /*   By: jtriscar <jtriscar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 21:26:10 by jtriscar          #+#    #+#             */
-/*   Updated: 2023/11/18 00:59:14 by jtriscar         ###   ########.fr       */
+/*   Updated: 2023/11/18 19:18:21 by jtriscar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,15 +92,15 @@ char	*ft_save(char *save)
 char	*get_next_line(int fd)
 {
 	char		*line;
-	static char	*str_save;
+	static char	*str_save[10240];
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (0);
-	str_save = ft_read_save(fd, str_save);
-	if (!str_save)
+	str_save[fd] = ft_read_save(fd, str_save[fd]);
+	if (!str_save[fd])
 		return (NULL);
-	line = ft_get_str(str_save);
-	str_save = ft_save(str_save);
+	line = ft_get_str(str_save[fd]);
+	str_save[fd] = ft_save(str_save[fd]);
 	if (!line || !*line)
 	{
 		free(line);
